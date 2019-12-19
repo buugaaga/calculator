@@ -1,0 +1,30 @@
+.App {
+  align-content: center;
+  background-color: rgba(70, 200, 70, 0.5);
+  margin: 70px auto;
+  padding: 10px 1px;
+  min-width: 200px;
+  max-width: 500px;
+  height: 500px;
+  border-radius: 5px;
+  box-shadow: 0 0 30px 10px silver;
+}
+.row {
+  display: flex;
+  flex-flow: wrap row;
+}
+.col {
+  display: flex;
+  flex-flow: wrap column;
+}
+.display {
+  background-color: white;
+  width: 95%;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: right;
+}
+
