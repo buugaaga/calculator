@@ -8,9 +8,12 @@ const ButtonPanel = ( { handleClick }: any ) => {
 "3", "2", "1", "+", "0", ".", "="];
 
     return (
-        <div className="button-panel">
+        <div className="button-panel" >
           {buttonValues.map( (value, i)  => (
-              <button key={i} data-value={value} onClick={handleClick} className={`button ${value}`}>{value}</button>
+              <div key={i} className={`button ${ value === "AC" ? "AC" : value === "=" ? "equal" : ""}`}>
+                <button  data-value={value} onClick={handleClick} >{value}</button>
+              </div>
+              
           )
           )}
         </div>

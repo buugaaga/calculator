@@ -1,39 +1,27 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
+import store from './store';
 import Display from './componets/Display';
 import ButtonPanel from './componets/ButtonPanel';
 import './App.css';
 
+
+
 class App extends React.Component {
+ 
 
-  state = {
-    result: 0,
-    calculation: "0"
-  }  
-
-  handleClick = (event) => {
-    let dataValue = event.target.dataset.value;
-    switch(true) {
-      case dataValue === "AC": 
-        this.setState({
-        result: 0,
-        input: "0"
-      });
-      break;
-      case (+dataValue >= 0 && +dataValue <= 9): 
-        this.setState({
-          calculation: this.state.calculation === "0" ?  dataValue : this.state.calculation + dataValue
-        });
-    }
-  }
+  
   render() {
+    
+    console.log(store)
     return (
       <div className="App col">
-        <Display result={this.state.result} calculation={this.state.calculation} />
-        <ButtonPanel handleClick={this.handleClick} />
+        <Display  result={store.state.result} calculation={store.state.calculation} />
+        <ButtonPanel  handleClick={store.handleClick} />
       </div>
     );
   }
 }
 
-export default App;
+export default observer(App);
