@@ -10,11 +10,8 @@ import './App.css';
 
 class App extends React.Component {
  
-
-  
   render() {
-    
-    console.log(store)
+
     return (
       <div className="App col">
         <Display  result={store.state.result} calculation={store.state.calculation} />
