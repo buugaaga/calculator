@@ -1,16 +1,16 @@
 import React from 'react';
 
 type DisplayProps = { 
-  result?: number;
+  result?: string;
   calculation?: string;  
 }
 
-const Display = ({ result = 0 , calculation = "0"}: DisplayProps) => {
+const Display = ({ result = "" , calculation = "0"}: DisplayProps) => {
 
   return (
-    <div className="display">
-      <div className="result display-value">{result}</div>
-      <div className="calculation display-value">{calculation}</div>
+    <div className="display"  >
+      <p className="result display-value" id="display">{result ? result : calculation}</p>
+      {/* <p className="calculation display-value" >{calculation}</p> */}
     </div>
   )
 }

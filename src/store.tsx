@@ -2,20 +2,20 @@ import { observable, decorate, computed } from 'mobx';
 
 class Store {
   state = {
-    result: 0,
+    result: "",
     calculation: "0"
   }
   
-  get calculate(): number {
+  get calculate(): string {
     let calc = this.state.calculation;
     if( calc.endsWith("/") || calc.endsWith("*") || calc.endsWith("-") || calc.endsWith("+") || calc.endsWith(".") ) {
       //eslint-disable-next-line
-      let ex = eval(this.state.calculation.slice(0, -1))
-      return ex;
+      let ex = eval(calc.slice(0,-1));
+      return ex.toString();
     }
     
     //eslint-disable-next-line
-    return eval(this.state.calculation)
+    return eval(calc).toString();
   }
   exampleForTest = (sentence: string): number => {
     // eslint-disable-next-line
@@ -25,9 +25,10 @@ class Store {
   handleClick = (event) => {
     let dataValue = event.target.dataset.value;
     let calc = this.state.calculation;
+    if (this.state.result && dataValue) this.state.result = "";
     switch(true) {
       case dataValue === "AC": 
-        this.state.result = 0;
+        this.state.result = "";
         this.state.calculation = "0";
         break;
       case dataValue === "=":
@@ -38,12 +39,12 @@ class Store {
           this.state.calculation = calc === "0" ?  dataValue : calc + dataValue
         break;
       case (dataValue === "."):
-          this.state.calculation = (calc.endsWith("*" || "-" || "+" || "/")) ? calc : calc + dataValue
+        this.state.calculation = (calc.endsWith("*") || calc.endsWith("/") || calc.endsWith("+") || calc.endsWith("-") || calc.endsWith(".") || calc.includes("."))  ? calc : calc + dataValue
         break;
-      case (dataValue === "*" || dataValue === "-" || dataValue === "+" || dataValue === "/"):
-        
+      case (dataValue === "*" || dataValue === "+" || dataValue === "/" || dataValue === "-"):
         this.state.calculation = (calc !== "0" && !calc.endsWith("/") && !calc.endsWith("*") && !calc.endsWith("-") && !calc.endsWith("+") && !calc.endsWith(".") ) ? calc + dataValue : calc;
         break;
+     
       case (dataValue === "←"):
         this.state.calculation = calc.length !== 1 ? calc.slice(0,-1) : "0";
         break;
