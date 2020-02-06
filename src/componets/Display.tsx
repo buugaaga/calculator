@@ -5,12 +5,11 @@ type DisplayProps = {
   calculation?: string;  
 }
 
-const Display = ({ result = "" , calculation = "0"}: DisplayProps) => {
+const Display = ({ result = "" , calculation }: DisplayProps) => {
 
   return (
     <div className="display"  >
-      <p className="result display-value" id="display">{result ? result : calculation}</p>
-      {/* <p className="calculation display-value" >{calculation}</p> */}
+      <p className="result display-value" id="display">{result || calculation }</p>
     </div>
   )
 }
