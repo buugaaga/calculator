@@ -1,4 +1,8 @@
 
+export const calculate = (formula: string): string => {
+  return formula
+}
+
 export function calculatingDecimal(previusVal: string, inputedVal: string): string {
   if (isHaveDecimal(previusVal)) return previusVal
   return previusVal.concat(inputedVal)
@@ -11,4 +15,3 @@ export function isHaveDecimal(strCheck: string): boolean {
 export function isNumber(input: string): boolean {
   return /[0-9]/.test(input)
 }
-
